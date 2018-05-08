@@ -1,4 +1,4 @@
-package grpcprom_test
+package grpcmon_test
 
 import (
 	"context"
@@ -6,8 +6,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	bpb "github.com/Bo0mer/grpcprom/testdata/backend"
-	pb "github.com/Bo0mer/grpcprom/testdata/frontend"
+	bpb "github.com/Bo0mer/grpcmon/testdata/backend"
+	pb "github.com/Bo0mer/grpcmon/testdata/frontend"
 )
 
 var addr, backendAddr string

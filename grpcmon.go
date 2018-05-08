@@ -1,4 +1,4 @@
-// Package grpcprom provides monitoring instrumentation for gRPC clients and
+// Package grpcmon provides monitoring instrumentation for gRPC clients and
 // servers.
 //
 // The following metrics are provided:
@@ -18,7 +18,7 @@
 //  grpc_server_latency_seconds{service,method,code} [histogram] Latency of gRPC server requests.
 //  grpc_server_recv_bytes{service,method,frame} [histogram] Bytes received in gRPC server requests.
 //  grpc_server_sent_bytes{service,method,frame} [histogram] Bytes sent in gRPC server responses.
-package grpcprom // import "github.com/Bo0mer/grpcprom"
+package grpcmon // import "github.com/Bo0mer/grpcmon"
 
 import (
 	"context"

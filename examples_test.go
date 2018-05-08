@@ -1,32 +1,32 @@
-package grpcprom_test
+package grpcmon_test
 
 import (
 	"log"
 	"net"
 
-	"github.com/Bo0mer/grpcprom"
-	bpb "github.com/Bo0mer/grpcprom/testdata/backend"
-	pb "github.com/Bo0mer/grpcprom/testdata/frontend"
+	"github.com/Bo0mer/grpcmon"
+	bpb "github.com/Bo0mer/grpcmon/testdata/backend"
+	pb "github.com/Bo0mer/grpcmon/testdata/frontend"
 	"google.golang.org/grpc"
 )
 
 func Example() {
 	// Create gRPC metrics with selected options and register with monitoring
 	// sytem.
-	clientMetrics := &grpcprom.Metrics{
+	clientMetrics := &grpcmon.Metrics{
 	// ...
 	}
 	// Instrument gRPC client(s).
-	backendConn, err := grpc.Dial(backendAddr, grpcprom.DialOption(clientMetrics))
+	backendConn, err := grpc.Dial(backendAddr, grpcmon.DialOption(clientMetrics))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	serverMetrics := &grpcprom.Metrics{
+	serverMetrics := &grpcmon.Metrics{
 	// ...
 	}
 	// Instrument gRPC server and, optionally, initialize server metrics.
-	srv := grpc.NewServer(grpcprom.ServerOption(serverMetrics))
+	srv := grpc.NewServer(grpcmon.ServerOption(serverMetrics))
 	pb.RegisterFrontendServer(srv, &Server{
 		backend: bpb.NewBackendClient(backendConn),
 	})
