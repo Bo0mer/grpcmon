@@ -5,30 +5,31 @@ import (
 	"net"
 
 	"github.com/abursavich/grpcprom"
-	"github.com/prometheus/client_golang/prometheus"
-	"google.golang.org/grpc"
-
 	bpb "github.com/abursavich/grpcprom/testdata/backend"
 	pb "github.com/abursavich/grpcprom/testdata/frontend"
+	"google.golang.org/grpc"
 )
 
 func Example() {
-	// Create gRPC metrics with selected options and register with Prometheus.
-	grpcMetrics := grpcprom.NewMetrics(grpcprom.MetricsOpts{
-		// ...
-	})
-	prometheus.MustRegister(grpcMetrics)
+	// Create gRPC metrics with selected options and register with monitoring
+	// sytem.
+	clientMetrics := &grpcprom.Metrics{
+	// ...
+	}
 	// Instrument gRPC client(s).
-	backendConn, err := grpc.Dial(backendAddr, grpcMetrics.DialOption())
+	backendConn, err := grpc.Dial(backendAddr, grpcprom.DialOption(clientMetrics))
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	serverMetrics := &grpcprom.Metrics{
+	// ...
+	}
 	// Instrument gRPC server and, optionally, initialize server metrics.
-	srv := grpc.NewServer(grpcMetrics.ServerOption())
+	srv := grpc.NewServer(grpcprom.ServerOption(serverMetrics))
 	pb.RegisterFrontendServer(srv, &Server{
 		backend: bpb.NewBackendClient(backendConn),
 	})
-	grpcMetrics.InitServer(srv)
 	// Listen and serve.
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
