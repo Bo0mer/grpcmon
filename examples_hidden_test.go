@@ -6,8 +6,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	bpb "github.com/abursavich/grpcprom/testdata/backend"
-	pb "github.com/abursavich/grpcprom/testdata/frontend"
+	bpb "github.com/Bo0mer/grpcprom/testdata/backend"
+	pb "github.com/Bo0mer/grpcprom/testdata/frontend"
 )
 
 var addr, backendAddr string

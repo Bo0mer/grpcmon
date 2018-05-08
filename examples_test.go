@@ -4,9 +4,9 @@ import (
 	"log"
 	"net"
 
-	"github.com/abursavich/grpcprom"
-	bpb "github.com/abursavich/grpcprom/testdata/backend"
-	pb "github.com/abursavich/grpcprom/testdata/frontend"
+	"github.com/Bo0mer/grpcprom"
+	bpb "github.com/Bo0mer/grpcprom/testdata/backend"
+	pb "github.com/Bo0mer/grpcprom/testdata/frontend"
 	"google.golang.org/grpc"
 )
 
