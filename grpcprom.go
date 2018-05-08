@@ -1,4 +1,5 @@
-// Package grpcprom provides Prometheus instrumentation for gRPC clients and servers.
+// Package grpcprom provides monitoring instrumentation for gRPC clients and
+// servers.
 //
 // The following metrics are provided:
 //
