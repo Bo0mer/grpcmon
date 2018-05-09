@@ -135,7 +135,7 @@ func (h *handler) HandleRPC(ctx context.Context, stat stats.RPCStats) {
 		}
 	case *stats.OutHeader:
 		if m.BytesSent != nil {
-			m.BytesSent.With(v.server, v.method, header).Observe(0) // TODO ???
+			m.BytesSent.With("service", v.server, "method", v.method, "frame", header).Observe(0) // TODO ???
 		}
 	case *stats.OutPayload:
 		if m.BytesSent != nil {
