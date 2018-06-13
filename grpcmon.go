@@ -43,6 +43,20 @@ var DefaultLatencyBuckets = []float64{0.001, 0.0025, 0.005, 0.01, 0.025, 0.05, 0
 // DefaultBytesBuckets provides convenient default bytes histogram buckets.
 var DefaultBytesBuckets = []float64{0, 32, 64, 128, 256, 512, 1024, 2048, 8192, 32768, 131072, 524288}
 
+// ClientStatsHandler returns gRPC stats.Handler to be used with gRPC clients.
+// It is to be used when clients want to chain multiple stats.Handler
+// implementations.
+func ClientStatsHandler(metrics *Metrics) stats.Handler {
+	return &handler{client: metrics}
+}
+
+// ServerStatsHandler returns gRPC stats.Handler to be used with gRPC servers.
+// It is to be used when servers want to chain multiple stats.Handler
+// implementations.
+func ServerStatsHandler(metrics *Metrics) stats.Handler {
+	return &handler{server: metrics}
+}
+
 // DialOption returns a gRPC DialOption that instruments metrics
 // for the client connection.
 func DialOption(metrics *Metrics) grpc.DialOption {
